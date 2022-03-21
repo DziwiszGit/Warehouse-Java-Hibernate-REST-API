@@ -43,4 +43,36 @@ public class WarehousemenDAO implements IWarehousemenDAO {
             return null;
         }
     }
+    public void addWarehouseman(Warehouseman warehouseman) {
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(warehouseman);
+            tx.commit();
+        } catch (Exception e) {
+            if(tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void deleteWarehouseman(int id) {
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(getWarehousemenByID(id));
+            tx.commit();
+        } catch (Exception e) {
+            if(tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
 }

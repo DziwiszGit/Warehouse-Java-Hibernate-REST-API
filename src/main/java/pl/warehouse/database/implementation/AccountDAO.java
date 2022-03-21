@@ -21,12 +21,13 @@ public class AccountDAO implements IAccountDAO {
     SessionFactory sessionFactory;
 
     @Override
-    public void addAccount(String login, String password, Warehouseman warehouseman) {
+    public void addAccount(Account account) {
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
+
         try {
             tx = session.beginTransaction();
-            session.save(new Account(login,password,warehouseman));
+            session.save(account);
             tx.commit();
         } catch (Exception e) {
             if(tx != null) {
@@ -38,12 +39,12 @@ public class AccountDAO implements IAccountDAO {
     }
 
     @Override
-    public void deleteAccount(Warehouseman warehouseman) {
+    public void deleteAccount(int id) {
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(getAccountList().equals(warehouseman));
+            session.delete(getAccountById(id));
             tx.commit();
         } catch (Exception e) {
             if(tx != null) {
@@ -76,5 +77,20 @@ public class AccountDAO implements IAccountDAO {
         List<Account> result = query.getResultList();
         session.close();
         return result;
+    }
+
+    @Override
+    public Account getAccountById(int id) {
+        Session session = this.sessionFactory.openSession();
+        Query<Account> query = session.createQuery("FROM pl.warehouse.models.Account WHERE id = :id");
+        query.setParameter("id", id);
+        try {
+            Account account = query.getSingleResult();
+            session.close();
+            return account;
+        } catch (NoResultException e) {
+            session.close();
+            return null;
+        }
     }
 }

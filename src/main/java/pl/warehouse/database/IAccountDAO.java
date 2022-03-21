@@ -6,8 +6,9 @@ import pl.warehouse.models.Warehouseman;
 import java.util.List;
 
 public interface IAccountDAO {
-    void addAccount(String login, String password, Warehouseman warehouseman);
-    void deleteAccount(Warehouseman warehouseman);
+    void addAccount(Account account);
+    void deleteAccount(int id);
     Account getAccountByLogin(String login);
     List<Account> getAccountList();
+    Account getAccountById(int id);
 }
