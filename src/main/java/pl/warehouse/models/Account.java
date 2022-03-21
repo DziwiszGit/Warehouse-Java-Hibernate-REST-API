@@ -4,61 +4,80 @@ import javax.persistence.*;
 
 @Entity(name = "taccounts")
 public class Account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int id;
 
-    @Column(nullable = false)
-    private String login;
+        @Column(nullable = false)
+        private String login;
 
-    @Column(nullable = false)
-    private String surname;
+        @Column(nullable = false)
+        private String password;
 
-    @OneToOne
-    @JoinColumn(name = "warehousemen_ID")
-    private Warehouseman warehousemen;
+        @OneToOne
+        @JoinColumn(referencedColumnName = "id")
+        private Warehouseman warehouseman;
 
-    public Account() {
-    }
+        public Account() {
+        }
 
-    public Account(String login, String surname, Warehouseman warehousemen) {
+    public Account(String login, String password) {
         this.login = login;
-        this.surname = surname;
-        this.warehousemen = warehousemen;
+        this.password = password;
     }
 
-    public Account(int id, String login, String surname, Warehouseman warehousemen) {
-        this.id = id;
-        this.login = login;
-        this.surname = surname;
-        this.warehousemen = warehousemen;
-    }
+    public Account(String login, String password, Warehouseman warehouseman) {
+            this.login = login;
+            this.password = password;
+            this.warehouseman = warehouseman;
+        }
 
-    public int getId() {
-        return id;
-    }
+        public Account(int id, String login, String password, Warehouseman warehouseman) {
+            this.id = id;
+            this.login = login;
+            this.password = password;
+            this.warehouseman = warehouseman;
+        }
 
-    public String getLogin() {
-        return login;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public String getSurname() {
-        return surname;
-    }
+        public String getLogin() {
+            return login;
+        }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+        public void setLogin(String login) {
+            this.login = login;
+        }
 
-    public Warehouseman getWarehousemen() {
-        return warehousemen;
-    }
+        public String getPassword() {
+            return password;
+        }
 
-    public void setWarehousemen(Warehouseman warehousemen) {
-        this.warehousemen = warehousemen;
-    }
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public Warehouseman getWarehouseman() {
+            return warehouseman;
+        }
+
+        public void setWarehouseman(Warehouseman warehouseman) {
+            this.warehouseman = warehouseman;
+        }
+
+        @Override
+        public String toString() {
+            return "Account{" +
+                    "id=" + id +
+                    ", login='" + login + '\'' +
+                    ", password='" + password + '\'' +
+                    ", warehousemen=" + warehouseman +
+                    '}';
+        }
 }

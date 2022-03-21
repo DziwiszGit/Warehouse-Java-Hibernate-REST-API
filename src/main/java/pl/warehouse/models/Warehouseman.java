@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Warehouseman {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(nullable = false)
@@ -35,6 +36,11 @@ public class Warehouseman {
         this.surname = surname;
         this.age = age;
         this.position = position;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -71,5 +77,16 @@ public class Warehouseman {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return "Warehouseman{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", position=" + position +
+                '}';
     }
 }
