@@ -1,15 +1,19 @@
 package pl.warehouse.services.implementation;
 
+import org.hibernate.NonUniqueObjectException;
+import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.warehouse.database.IAccountDAO;
 import pl.warehouse.database.implementation.WarehousemenDAO;
 import pl.warehouse.exceptions.AuthValidationException;
+import pl.warehouse.exceptions.LoginCheckException;
 import pl.warehouse.models.Account;
 import pl.warehouse.models.Warehouseman;
 import pl.warehouse.services.IAccountService;
 import pl.warehouse.validation.LoginValidation;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 @Service
@@ -26,6 +30,7 @@ public class AccountService implements IAccountService {
         try{
             LoginValidation.validateLogin(account.getLogin());
             LoginValidation.validatePass(account.getPassword());
+            checkThisSameLogin(account.getLogin());
         }catch(AuthValidationException e){
             return;
         }
@@ -52,6 +57,15 @@ public class AccountService implements IAccountService {
     @Override
     public Account getAccountById(int id) {
         return accountDAO.getAccountById(id);
+    }
+
+    @Override
+    public void checkThisSameLogin(String login){
+        try{
+            login.equals(accountDAO.getAccountByLogin(login));
+        }catch(LoginCheckException e){
+            return;
+        }
     }
 
 

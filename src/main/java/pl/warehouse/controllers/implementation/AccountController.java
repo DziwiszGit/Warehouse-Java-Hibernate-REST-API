@@ -12,11 +12,11 @@ import pl.warehouse.services.implementation.WarehousemenService;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class AccountController implements IAccountController {
 
     @Autowired
     IAccountService accountService;
-    WarehousemenService warehousemenService;
 
     @Override
     @RequestMapping(value="/account",method = RequestMethod.POST)

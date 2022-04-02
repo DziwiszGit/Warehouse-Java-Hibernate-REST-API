@@ -16,8 +16,8 @@ public class LoginService implements ILoginService {
     public boolean checkLoginAndPass(String login, String password) {
         Account tempAccount= new Account(login,password);
         for (Account account: accountDAO.getAccountList()) {
-            if((account.getLogin() == tempAccount.getLogin())
-                    || (account.getPassword()==tempAccount.getPassword())) {
+            if(account.getLogin().equals(tempAccount.getLogin())
+                    && (account.getPassword().equals(tempAccount.getPassword()))) {
                 return true;
             }
         }

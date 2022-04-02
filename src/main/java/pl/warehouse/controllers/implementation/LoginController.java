@@ -9,6 +9,7 @@ import pl.warehouse.services.implementation.LoginService;
 import pl.warehouse.validation.LoginValidation;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class LoginController implements ILoginController {
 
     @Autowired

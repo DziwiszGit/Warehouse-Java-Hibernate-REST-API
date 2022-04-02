@@ -11,4 +11,5 @@ public interface IAccountService {
     Account getAccountByLogin(String login);
     List<Account> getAccountList();
     Account getAccountById(int id);
+    void checkThisSameLogin(String login);
 }

@@ -1,5 +1,8 @@
 package pl.warehouse.validation;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.warehouse.database.IAccountDAO;
+import pl.warehouse.database.implementation.AccountDAO;
 import pl.warehouse.exceptions.AuthValidationException;
 
 public class LoginValidation {
@@ -15,4 +18,5 @@ public class LoginValidation {
             throw new AuthValidationException("Password incorrect");
         }
     }
+
 }

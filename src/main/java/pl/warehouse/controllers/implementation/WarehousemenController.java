@@ -10,6 +10,7 @@ import pl.warehouse.services.implementation.WarehousemenService;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class WarehousemenController implements IWarehousemenController {
 
     @Autowired
