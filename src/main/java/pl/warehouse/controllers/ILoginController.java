@@ -1,7 +1,7 @@
 package pl.warehouse.controllers;
 
-import pl.warehouse.models.Account;
+import pl.warehouse.models.User;
 
 public interface ILoginController {
-    boolean login(Account account);
+    boolean login(User user);
 }

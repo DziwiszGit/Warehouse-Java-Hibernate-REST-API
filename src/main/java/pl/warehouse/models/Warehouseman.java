@@ -1,7 +1,12 @@
 package pl.warehouse.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity(name = "twarehousemen")
 public class Warehouseman {
     @Id
@@ -35,47 +40,6 @@ public class Warehouseman {
         this.name = name;
         this.surname = surname;
         this.age = age;
-        this.position = position;
-    }
-
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
         this.position = position;
     }
 

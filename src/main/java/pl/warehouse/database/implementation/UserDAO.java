@@ -6,28 +6,25 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pl.warehouse.database.IAccountDAO;
-import pl.warehouse.models.Account;
-import pl.warehouse.models.Product;
-import pl.warehouse.models.Warehouseman;
+import pl.warehouse.database.IUserDAO;
+import pl.warehouse.models.User;
 
 import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository
-public class AccountDAO implements IAccountDAO {
+public class UserDAO implements IUserDAO {
 
     @Autowired
     SessionFactory sessionFactory;
 
     @Override
-    public void addAccount(Account account) {
+    public void addUser(User user) {
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
-
         try {
             tx = session.beginTransaction();
-            session.save(account);
+            session.save(user);
             tx.commit();
         } catch (Exception e) {
             if(tx != null) {
@@ -39,12 +36,12 @@ public class AccountDAO implements IAccountDAO {
     }
 
     @Override
-    public void deleteAccount(int id) {
+    public void deleteUser(int id) {
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(getAccountById(id));
+            session.delete(getUserById(id));
             tx.commit();
         } catch (Exception e) {
             if(tx != null) {
@@ -56,14 +53,14 @@ public class AccountDAO implements IAccountDAO {
     }
 
     @Override
-    public Account getAccountByLogin(String login) {
+    public User getUserByUsername(String username) {
         Session session = this.sessionFactory.openSession();
-        Query<Account> query = session.createQuery("FROM pl.warehouse.models.Account WHERE login = :login");
-        query.setParameter("login", login);
+        Query<User> query = session.createQuery("FROM pl.warehouse.models.User WHERE username = :username");
+        query.setParameter("username", username);
         try {
-            Account account = query.getSingleResult();
+            User user = query.getSingleResult();
             session.close();
-            return account;
+            return user;
         } catch (NoResultException e) {
             session.close();
             return null;
@@ -71,23 +68,23 @@ public class AccountDAO implements IAccountDAO {
     }
 
     @Override
-    public List<Account> getAccountList() {
+    public List<User> getUserList() {
         Session session = this.sessionFactory.openSession();
-        Query<Account> query = session.createQuery("FROM pl.warehouse.models.Account");
-        List<Account> result = query.getResultList();
+        Query<User> query = session.createQuery("FROM pl.warehouse.models.User");
+        List<User> result = query.getResultList();
         session.close();
         return result;
     }
 
     @Override
-    public Account getAccountById(int id) {
+    public User getUserById(int id) {
         Session session = this.sessionFactory.openSession();
-        Query<Account> query = session.createQuery("FROM pl.warehouse.models.Account WHERE id = :id");
+        Query<User> query = session.createQuery("FROM pl.warehouse.models.User WHERE id = :id");
         query.setParameter("id", id);
         try {
-            Account account = query.getSingleResult();
+            User user = query.getSingleResult();
             session.close();
-            return account;
+            return user;
         } catch (NoResultException e) {
             session.close();
             return null;
