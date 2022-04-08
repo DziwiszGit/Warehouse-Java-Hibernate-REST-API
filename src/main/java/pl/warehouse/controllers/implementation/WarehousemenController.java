@@ -13,8 +13,11 @@ import java.util.List;
 @CrossOrigin("http://localhost:4200")
 public class WarehousemenController implements IWarehousemenController {
 
-    @Autowired
-    IWarehousemenService warehousemenService;
+    final IWarehousemenService warehousemenService;
+
+    public WarehousemenController(IWarehousemenService warehousemenService) {
+        this.warehousemenService = warehousemenService;
+    }
 
     @Override
     @RequestMapping(value="/warehousemen",method = RequestMethod.GET)

@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import pl.warehouse.database.IUserDAO;
 import pl.warehouse.models.User;
@@ -15,8 +16,11 @@ import java.util.List;
 @Repository
 public class UserDAO implements IUserDAO {
 
-    @Autowired
-    SessionFactory sessionFactory;
+    final SessionFactory sessionFactory;
+
+    public UserDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void addUser(User user) {

@@ -12,8 +12,11 @@ import java.util.List;
 @Service
 public class WarehousemenService implements IWarehousemenService {
 
-    @Autowired
-    IWarehousemenDAO warehousemenDAO;
+    final IWarehousemenDAO warehousemenDAO;
+
+    public WarehousemenService(IWarehousemenDAO warehousemenDAO) {
+        this.warehousemenDAO = warehousemenDAO;
+    }
 
     @Override
     public List<Warehouseman> getWarehousemenList() {

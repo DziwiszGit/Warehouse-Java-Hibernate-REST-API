@@ -12,35 +12,38 @@ import java.util.List;
 @CrossOrigin("http://localhost:4200")
 public class ProductController implements IProductController {
 
-    @Autowired
-    IProductService productService;
+    final IProductService productService;
+
+    public ProductController(IProductService productService) {
+        this.productService = productService;
+    }
 
     @Override
-    @RequestMapping(value="/products",method= RequestMethod.POST)
+    @RequestMapping(value="/api/products",method= RequestMethod.POST)
     public void addProduct(@RequestBody Product product) {
         productService.addProduct(product);
     }
 
     @Override
-    @RequestMapping(value="/products/{id}",method = RequestMethod.POST)
+    @RequestMapping(value="/api/products/{id}",method = RequestMethod.POST)
     public void deleteProductById(@PathVariable int id) {
         productService.deleteProductById(id);
     }
 
     @Override
-    @RequestMapping(value="/products",method = RequestMethod.GET)
+    @RequestMapping(value="/api/products",method = RequestMethod.GET)
     public List<Product> getProductList() {
         return productService.getProductList();
     }
 
     @Override
-    @RequestMapping(value="/products/{id}",method = RequestMethod.GET)
+    @RequestMapping(value="/api/products/{id}",method = RequestMethod.GET)
     public Product getProductById(@PathVariable int id) {
         return productService.getProductById(id);
     }
 
     @Override
-    @RequestMapping(value="/products/update",method = RequestMethod.POST)
+    @RequestMapping(value="/api/products/update",method = RequestMethod.POST)
     public void uppdateWeight(@RequestBody Product product) {
         productService.uppdateWeight(product);
     }

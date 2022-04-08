@@ -16,8 +16,11 @@ import java.util.List;
 @Repository
 public class WarehousemenDAO implements IWarehousemenDAO {
 
-    @Autowired
-    SessionFactory sessionFactory;
+    final SessionFactory sessionFactory;
+
+    public WarehousemenDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
 
     @Override

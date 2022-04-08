@@ -9,9 +9,12 @@ import pl.warehouse.services.ILoginService;
 @Service
 public class LoginService implements ILoginService {
     
-    @Autowired
-    UserDAO userDAO;
-    
+    final UserDAO userDAO;
+
+    public LoginService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
     @Override
     public boolean checkLoginAndPass(String login, String password) {
         User tempUser = new User(login,password);

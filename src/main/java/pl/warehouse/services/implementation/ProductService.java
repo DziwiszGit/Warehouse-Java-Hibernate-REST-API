@@ -11,8 +11,11 @@ import java.util.List;
 @Service
 public class ProductService implements IProductService {
 
-    @Autowired
-    IProductDAO productDAO;
+    final IProductDAO productDAO;
+
+    public ProductService(IProductDAO productDAO) {
+        this.productDAO = productDAO;
+    }
 
     @Override
     public void addProduct(Product product) {

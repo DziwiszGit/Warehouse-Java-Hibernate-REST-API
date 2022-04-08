@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.*;
@@ -13,7 +14,7 @@ import java.util.*;
 @Getter
 @Setter
 @Entity(name = "tuser")
-public class User implements UserDetails {
+public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -58,6 +59,11 @@ public class User implements UserDetails {
 
 
     @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority(getRole().role));
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
         return true;
     }
@@ -76,11 +82,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(getRole().role));
-    }
-
-
 }

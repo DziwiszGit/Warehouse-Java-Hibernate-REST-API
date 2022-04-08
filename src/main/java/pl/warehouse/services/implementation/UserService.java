@@ -1,6 +1,6 @@
 package pl.warehouse.services.implementation;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.warehouse.database.IUserDAO;
 import pl.warehouse.database.IWarehousemenDAO;
@@ -15,11 +15,14 @@ import java.util.List;
 @Service
 public class UserService implements IUserService {
 
-    @Autowired
-    IUserDAO userDAO;
-
-    @Autowired
-    IWarehousemenDAO warehousemenDAO;
+    final PasswordEncoder passwordEncoder;
+    final IUserDAO userDAO;
+    final IWarehousemenDAO warehousemenDAO;
+    public UserService(IUserDAO userDAO, IWarehousemenDAO warehousemenDAO, PasswordEncoder passwordEncoder) {
+        this.userDAO = userDAO;
+        this.warehousemenDAO = warehousemenDAO;
+        this.passwordEncoder = passwordEncoder;
+    }
 
 
     @Override
@@ -27,6 +30,7 @@ public class UserService implements IUserService {
         try{
             LoginValidation.validateLogin(user.getUsername());
             LoginValidation.validatePass(user.getPassword());
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             checkThisSameUsername(user.getUsername());
         }catch(AuthValidationException e){
             return;
@@ -64,6 +68,4 @@ public class UserService implements IUserService {
             return;
         }
     }
-
-
 }
