@@ -1,6 +1,7 @@
 package pl.warehouse.controllers.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 import pl.warehouse.controllers.IUserController;
 import pl.warehouse.models.User;
@@ -9,7 +10,7 @@ import pl.warehouse.services.IUserService;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController implements IUserController {
 
     final IUserService userService;
@@ -41,4 +42,11 @@ public class UserController implements IUserController {
     public List<User> getUserList() {
         return userService.getUserList();
     }
+
+    @Override
+    @RequestMapping(value = "/api",method = RequestMethod.GET)
+    public boolean authorization() {
+        return true;
+    }
+
 }

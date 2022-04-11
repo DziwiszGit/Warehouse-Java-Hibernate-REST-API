@@ -53,9 +53,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/**").authenticated()
                 .anyRequest().authenticated()
                 .and()
+                .cors()
+                .and()
                 .httpBasic()
                 .and()
                 .csrf().disable();
+
+
     }
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

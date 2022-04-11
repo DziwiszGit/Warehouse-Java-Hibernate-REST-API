@@ -9,7 +9,7 @@ import pl.warehouse.services.IProductService;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController implements IProductController {
 
     final IProductService productService;

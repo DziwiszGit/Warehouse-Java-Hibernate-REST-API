@@ -9,4 +9,5 @@ public interface IUserController {
     void deleteUser(int id);
     User getUserByUsername(String username);
     List<User> getUserList();
+    boolean authorization();
 }
