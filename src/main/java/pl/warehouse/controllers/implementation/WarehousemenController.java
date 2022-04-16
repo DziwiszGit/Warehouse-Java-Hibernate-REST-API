@@ -20,13 +20,13 @@ public class WarehousemenController implements IWarehousemenController {
     }
 
     @Override
-    @RequestMapping(value="/warehousemen",method = RequestMethod.GET)
+    @RequestMapping(value="/api/warehousemen",method = RequestMethod.GET)
     public List<Warehouseman> getWarehousemenList() {
         return warehousemenService.getWarehousemenList();
     }
 
     @Override
-    @RequestMapping(value="/warehousemen/{id}",method = RequestMethod.GET)
+    @RequestMapping(value="/api/warehousemen/{id}",method = RequestMethod.GET)
     public void getWarehousemenByID(@PathVariable int id) {
         warehousemenService.getWarehousemenByID(id);
     }
