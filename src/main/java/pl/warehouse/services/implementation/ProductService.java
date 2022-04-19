@@ -41,4 +41,16 @@ public class ProductService implements IProductService {
     public void uppdateWeight(Product product) {
         productDAO.uppdateWeight(product);
     }
+
+    @Override
+    public boolean checkExisting(String name) {
+        for (Product foundProduct : this.productDAO.getProductList()){
+            if(foundProduct.getName().equals(name)){
+                System.out.println("return false");
+                return false;
+            }
+        }
+        System.out.println("return true");
+        return true;
+    }
 }

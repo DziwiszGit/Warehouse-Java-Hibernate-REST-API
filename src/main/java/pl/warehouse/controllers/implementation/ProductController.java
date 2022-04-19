@@ -48,5 +48,11 @@ public class ProductController implements IProductController {
         productService.uppdateWeight(product);
     }
 
+    @Override
+    @RequestMapping(value="/api/products/check/{name}",method = RequestMethod.GET)
+    public boolean checkExisting(@PathVariable String name) {
+        return productService.checkExisting(name);
+    }
+
 
 }

@@ -11,4 +11,5 @@ public interface IProductController {
     public List<Product> getProductList();
     public Product getProductById(int id);
     public void uppdateWeight(Product product);
+    public boolean checkExisting(String name);
 }
