@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class UserDAO implements IUserDAO {
 
-    final SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public UserDAO(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

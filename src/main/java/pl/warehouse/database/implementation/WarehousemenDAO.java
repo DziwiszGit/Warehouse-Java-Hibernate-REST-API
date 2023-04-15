@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class WarehousemenDAO implements IWarehousemenDAO {
 
-    final SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public WarehousemenDAO(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

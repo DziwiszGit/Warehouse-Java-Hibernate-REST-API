@@ -26,7 +26,7 @@ public class UserController implements IUserController {
     }
 
     @Override
-    @RequestMapping(value="/api/user/{id}",method = RequestMethod.POST)
+    @RequestMapping(value="/api/user/{id}",method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
     }

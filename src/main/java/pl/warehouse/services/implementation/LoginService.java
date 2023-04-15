@@ -8,8 +8,8 @@ import pl.warehouse.services.ILoginService;
 
 @Service
 public class LoginService implements ILoginService {
-    
-    final UserDAO userDAO;
+
+    private final UserDAO userDAO;
 
     public LoginService(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -19,11 +19,11 @@ public class LoginService implements ILoginService {
     public boolean checkLoginAndPass(String login, String password) {
         User tempUser = new User(login,password);
         for (User user : userDAO.getUserList()) {
-            if(user.getUsername().equals(tempUser.getUsername())
+           if(user.getUsername().equals(tempUser.getUsername())
                     && (user.getPassword().equals(tempUser.getPassword()))) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

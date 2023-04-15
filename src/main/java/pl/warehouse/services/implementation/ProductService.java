@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class ProductService implements IProductService {
 
-    final IProductDAO productDAO;
+    private final IProductDAO productDAO;
 
     public ProductService(IProductDAO productDAO) {
         this.productDAO = productDAO;
@@ -46,11 +46,9 @@ public class ProductService implements IProductService {
     public boolean checkExisting(String name) {
         for (Product foundProduct : this.productDAO.getProductList()){
             if(foundProduct.getName().equals(name)){
-                System.out.println("return false");
-                return false;
+                return true;
             }
         }
-        System.out.println("return true");
-        return true;
+        return false;
     }
 }

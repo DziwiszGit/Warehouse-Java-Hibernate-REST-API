@@ -15,9 +15,9 @@ import java.util.List;
 @Service
 public class UserService implements IUserService {
 
-    final PasswordEncoder passwordEncoder;
-    final IUserDAO userDAO;
-    final IWarehousemenDAO warehousemenDAO;
+    private final PasswordEncoder passwordEncoder;
+    private final IUserDAO userDAO;
+    private final IWarehousemenDAO warehousemenDAO;
     public UserService(IUserDAO userDAO, IWarehousemenDAO warehousemenDAO, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
         this.warehousemenDAO = warehousemenDAO;

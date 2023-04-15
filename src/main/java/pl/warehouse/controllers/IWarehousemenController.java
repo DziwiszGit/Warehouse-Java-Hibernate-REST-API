@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface IWarehousemenController {
     List<Warehouseman> getWarehousemenList();
-    void getWarehousemenByID(int id);
+    void getWarehousemanByID(int id);
+    void addWarehouseman(Warehouseman warehouseman);
+//    void deleteWarehouseman(int id);
 }

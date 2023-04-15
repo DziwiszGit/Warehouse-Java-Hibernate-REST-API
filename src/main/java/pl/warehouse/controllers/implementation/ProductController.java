@@ -1,10 +1,10 @@
 package pl.warehouse.controllers.implementation;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.warehouse.controllers.IProductController;
 import pl.warehouse.models.Product;
 import pl.warehouse.services.IProductService;
+import pl.warehouse.services.implementation.LoginService;
 
 import java.util.List;
 
@@ -12,9 +12,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProductController implements IProductController {
 
-    final IProductService productService;
+    private final LoginService loginService;
 
-    public ProductController(IProductService productService) {
+    private final IProductService productService;
+
+    public ProductController(LoginService loginService, IProductService productService) {
+        this.loginService = loginService;
         this.productService = productService;
     }
 
@@ -25,7 +28,7 @@ public class ProductController implements IProductController {
     }
 
     @Override
-    @RequestMapping(value="/api/products/{id}",method = RequestMethod.POST)
+    @RequestMapping(value="/api/products/{id}",method = RequestMethod.DELETE)
     public void deleteProductById(@PathVariable int id) {
         productService.deleteProductById(id);
     }
@@ -43,7 +46,7 @@ public class ProductController implements IProductController {
     }
 
     @Override
-    @RequestMapping(value="/api/products/update",method = RequestMethod.POST)
+    @RequestMapping(value="/api/products/update",method = RequestMethod.PUT)
     public void uppdateWeight(@RequestBody Product product) {
         productService.uppdateWeight(product);
     }

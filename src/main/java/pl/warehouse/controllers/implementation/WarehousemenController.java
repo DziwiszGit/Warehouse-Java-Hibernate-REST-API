@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class WarehousemenController implements IWarehousemenController {
 
-    final IWarehousemenService warehousemenService;
+    private final IWarehousemenService warehousemenService;
 
     public WarehousemenController(IWarehousemenService warehousemenService) {
         this.warehousemenService = warehousemenService;
@@ -27,7 +27,18 @@ public class WarehousemenController implements IWarehousemenController {
 
     @Override
     @RequestMapping(value="/api/warehousemen/{id}",method = RequestMethod.GET)
-    public void getWarehousemenByID(@PathVariable int id) {
+    public void getWarehousemanByID(@PathVariable int id) {
         warehousemenService.getWarehousemenByID(id);
+    }
+
+    @Override
+    @RequestMapping(value="/api/warehousemen",method = RequestMethod.POST)
+    public void addWarehouseman(@RequestBody Warehouseman warehouseman) {
+        warehousemenService.addWarehouseman(warehouseman);
+    }
+
+    @RequestMapping(value="/api/warehousemen/{id}",method = RequestMethod.DELETE)
+    public void deleteWarehouseman(@PathVariable int id) {
+        warehousemenService.deleteWarehouseman(id);
     }
 }

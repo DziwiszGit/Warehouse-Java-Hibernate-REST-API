@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class ProductDAO implements IProductDAO {
 
-    final SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public ProductDAO(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

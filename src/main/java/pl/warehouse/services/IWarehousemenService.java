@@ -8,4 +8,5 @@ public interface IWarehousemenService {
     List<Warehouseman> getWarehousemenList();
     Warehouseman getWarehousemenByID(int id);
     void addWarehouseman(Warehouseman warehouseman);
+    void deleteWarehouseman(int id);
 }

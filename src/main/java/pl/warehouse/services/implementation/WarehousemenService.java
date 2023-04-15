@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class WarehousemenService implements IWarehousemenService {
 
-    final IWarehousemenDAO warehousemenDAO;
+    private final IWarehousemenDAO warehousemenDAO;
 
     public WarehousemenService(IWarehousemenDAO warehousemenDAO) {
         this.warehousemenDAO = warehousemenDAO;
@@ -31,6 +31,11 @@ public class WarehousemenService implements IWarehousemenService {
     @Override
     public void addWarehouseman(Warehouseman warehouseman) {
         warehousemenDAO.addWarehouseman(warehouseman);
+    }
+
+    @Override
+    public void deleteWarehouseman(int id) {
+        warehousemenDAO.deleteWarehouseman(id);
     }
 
 
